@@ -1,0 +1,49 @@
+# =========================
+# Java
+# =========================
+# *.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# =========================
+# VS Code
+# =========================
+# .vscode/
+# !.vscode/settings.json
+# !.vscode/launch.json
+# !.vscode/tasks.json
+
+# =========================
+# OS generated files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Build / Output folders
+# =========================
+# bin/
+# out/
+# target/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# IntelliJ / Eclipse (in case you switch later)
+# =========================
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# =========================
+# Misc
+# =========================
+*.tmp
+*.swp
