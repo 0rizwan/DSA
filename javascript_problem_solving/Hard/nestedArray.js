@@ -1,3 +1,0 @@
-function getLength(arr) {
-	
-}
