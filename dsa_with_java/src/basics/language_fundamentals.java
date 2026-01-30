@@ -1,4 +1,4 @@
-package dsa_with_java.src.basics;
+package basics;
 import java.util.Scanner;
 
 public class language_fundamentals {
