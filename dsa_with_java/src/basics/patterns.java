@@ -66,7 +66,11 @@ public class patterns {
         }
     }
 
-    void pattern6(int n) {
+    // 1234
+    // 123
+    // 12
+    // 1
+    static void pattern6(int n) {
         // method 1
         for (int i = n; i > 0; i--) {
             for (int j = 1; j <= i; j++) {
@@ -89,5 +93,6 @@ public class patterns {
         pattern3(4);
         pattern4(5);
         pattern5(5);
+        pattern6(5);
     }
 }
