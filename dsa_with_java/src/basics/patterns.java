@@ -198,17 +198,82 @@ public class patterns {
         }
     }
 
+    // E
+    // D E
+    // C D E
+    // B C D E
+    // A B C D E
+    static void pattern12(int n) {
+        int initialVal = 64 + n;
+        for (int i = 0; i < n; i++) {
+            int localVal = initialVal;
+            for (int j = 0; j <= i; j++) {
+                char character = (char) localVal;
+                System.out.print(character + " ");
+                localVal++;
+            }
+            initialVal--;
+            System.out.println("");
+        }
+    }
+
+    // ----A----
+    // ---ABA---
+    // --ABCBA--
+    // -ABCDCBA-
+    // ABCDEDCBA
+    static void pattern13(int n) {
+        for (int i = 0; i < n; i++) {
+            int asciiVal = 65;
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < 2 * i + 1; k++) {
+                char character = (char) asciiVal;
+                System.out.print(character);
+                if (k >= i)
+                    asciiVal--;
+                else
+                    asciiVal++;
+            }
+            for (int l = 0; l < n - i - 1; l++) {
+                System.out.print(" ");
+            }
+            System.out.println("");
+        }
+    }
+
+    // A
+    // BB
+    // CCC
+    // DDDD
+    // EEEEE
+    static void pattern14(int n) {
+        int asciiVal = 65;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                char character = (char) asciiVal;
+                System.out.print(character);
+            }
+            asciiVal++;
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
-        pattern1(4);
-        pattern2(5);
-        pattern3(4);
-        pattern4(5);
-        pattern5(5);
-        pattern6(5);
-        pattern7(7);
-        pattern8(7);
-        pattern9(10);
-        pattern10(5);
-        pattern11(5);
+        // pattern1(4);
+        // pattern2(5);
+        // pattern3(4);
+        // pattern4(5);
+        // pattern5(5);
+        // pattern6(5);
+        // pattern7(7);
+        // pattern8(7);
+        // pattern9(10);
+        // pattern10(5);
+        // pattern11(5);
+        // pattern12(5);
+        // pattern13(5);
+        pattern14(5);
     }
 }
