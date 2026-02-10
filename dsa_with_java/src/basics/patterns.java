@@ -260,6 +260,40 @@ public class patterns {
         }
     }
 
+    // ABCDE
+    // ABCD
+    // ABC
+    // AB
+    // A
+    static void pattern15(int n) {
+        for (int i = 1; i <= n; i++) {
+            int asciiVal = 65;
+            for (int j = 0; j <= n - i; j++) {
+                char character = (char) asciiVal;
+                System.out.print(character);
+                asciiVal++;
+            }
+            System.out.println("");
+        }
+    }
+
+    // A
+    // AB
+    // ABC
+    // ABCD
+    // ABCDE
+    static void pattern16(int n) {
+        for (int i = 1; i <= n; i++) {
+            int asciiVal = 65;
+            for (int j = 0; j < i; j++) {
+                char character = (char) asciiVal;
+                System.out.print(character);
+                asciiVal++;
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
         // pattern1(4);
         // pattern2(5);
@@ -275,5 +309,7 @@ public class patterns {
         // pattern12(5);
         // pattern13(5);
         pattern14(5);
+        pattern15(5);
+        pattern16(5);
     }
 }
