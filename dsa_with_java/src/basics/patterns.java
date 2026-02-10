@@ -127,6 +127,14 @@ public class patterns {
         }
     }
 
+    // ---*---
+    // --***--
+    // -*****-
+    // *******
+    // *******
+    // -*****-
+    // --***--
+    // ---*---
     static void pattern9(int n) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -154,6 +162,42 @@ public class patterns {
         }
     }
 
+    // 1
+    // 01
+    // 101
+    // 0101
+    // 10101
+    static void pattern10(int n) {
+        int num;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0)
+                num = 0;
+            else
+                num = 1;
+            for (int j = 0; j < i; j++) {
+                System.out.print(num);
+                num = 1 - num;
+            }
+            System.out.println("");
+        }
+    }
+
+    // 1
+    // 2 3
+    // 4 5 6
+    // 7 8 9 10
+    // 11 12 13 14 15
+    static void pattern11(int n) {
+        int num = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print(num + "  ");
+                num++;
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
         pattern1(4);
         pattern2(5);
@@ -164,5 +208,7 @@ public class patterns {
         pattern7(7);
         pattern8(7);
         pattern9(10);
+        pattern10(5);
+        pattern11(5);
     }
 }
