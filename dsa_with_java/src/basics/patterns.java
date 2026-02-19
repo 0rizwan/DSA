@@ -449,6 +449,45 @@ public class patterns {
         }
     }
 
+    // *****
+    // *---*
+    // *---*
+    // *---*
+    // *****
+    static void pattern21(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || i == n - 1 || j == 0 || j == n - 1) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
+    // 3 3 3 3 3
+    // 3 2 2 2 3
+    // 3 2 1 2 3
+    // 3 2 2 2 3
+    // 3 3 3 3 3
+    static void pattern22(int n) {
+        int size = 2 * n - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                // distance
+                int top = i;
+                int bottom = size - 1 - i;
+                int left = j;
+                int right = size - 1 - j;
+
+                int minDistance = Math.min(Math.min(top, bottom), Math.min(left, right));
+                System.out.print(n - minDistance + " ");
+            }
+            System.out.println("");
+        }
+    }
 
     public static void main(String[] args) {
         // pattern1(4);
@@ -468,8 +507,10 @@ public class patterns {
         // pattern15(5);
         // pattern16(5);
         // pattern17(5);
-        pattern18(4);
-        pattern19(5);
-        pattern20(5);
+        // pattern18(4);
+        // pattern19(5);
+        // pattern20(5);
+        pattern21(5);
+        pattern22(3);
     }
 }
