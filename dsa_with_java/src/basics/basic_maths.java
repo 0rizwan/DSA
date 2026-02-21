@@ -69,15 +69,17 @@ public class basic_maths {
     public static List<Integer> getDivisors(int N) {
         List<Integer> res = new ArrayList<>();
 
-        // Brute force approach
+        // Brute force approach - O(N)
         // for(int i = 1; i <= N; i++){
         // if(N % i == 0){
         // res.add(i);
         // }
         // }
 
-        // Optimal approach
-        for (int i = 1; i <= Math.sqrt(N); i++) {
+        // Optimal approach - O(sqrt(N))
+        // i <= Math.sqrt(N) and i * i <= N both are same but same but Math takes lil
+        // more time
+        for (int i = 1; i * i <= N; i++) {
             if (N % i == 0) {
                 res.add(i);
                 if (N / i != i) {
@@ -89,11 +91,25 @@ public class basic_maths {
         return res;
     }
 
+    // Given two integers N1 and N2, find their greatest common divisor.
+    public static int findGcd(int N1, int N2) {
+        // Brute force approach - O(min(N1, N2))
+        int gcd = 1;
+        for (int i = 1; i <= Math.min(N1, N2); i++) {
+            if (N1 % i == 0 && N2 % i == 0) {
+                gcd = i;
+            }
+        }
+        System.out.println("GCD of two num is: " + gcd);
+        return gcd;
+    }
+
     public static void main(String[] args) {
         // extractDigits(5431);
         // countDigits(4565);
         // reverseIntDigits(46215);
         // isPalindrome(45544);
         getDivisors(36);
+        findGcd(13, 11);
     }
 }
