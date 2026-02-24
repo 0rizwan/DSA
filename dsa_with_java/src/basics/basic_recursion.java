@@ -65,18 +65,18 @@ public class basic_recursion {
     }
 
     // isPalindrome string
-    static public boolean isPalindrome(String s) {
-        int left = 0, right = s.length() - 1;
+    static public boolean isPalindrome(String str) {
+        int left = 0, right = str.length() - 1;
 
         while (left < right) {
             // Skip non-alphanumeric characters on the left side
-            if (!Character.isLetterOrDigit(s.charAt(left)))
+            if (!Character.isLetterOrDigit(str.charAt(left)))
                 left++;
             // Skip non-alphanumeric characters on the right side
-            else if (!Character.isLetterOrDigit(s.charAt(right)))
+            else if (!Character.isLetterOrDigit(str.charAt(right)))
                 right--;
             // If characters are different, it's not a palindrome
-            else if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right)))
+            else if (Character.toLowerCase(str.charAt(left)) != Character.toLowerCase(str.charAt(right)))
                 return false;
             else {
                 left++;
@@ -86,9 +86,67 @@ public class basic_recursion {
         return true;
     }
 
+    // Fibonacci series with diffrent approaches
+    // time - O(n) + O(n); space - O(n)
+    static public void fibonacci(int n) {
+        if (n == 0) {
+            System.out.println(0);
+            return;
+        }
+        if (n == 1) {
+            System.out.println("0 1");
+            return;
+        }
+
+        int[] fib = new int[n + 1];
+        fib[0] = 0;
+        fib[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.println(fib[i]);
+        }
+    }
+
+    // time - O(n); space - O(1)
+    static public void fibonacci2(int n) {
+        if (n >= 1) {
+            System.out.print(" 0");
+        }
+        if (n >= 2) {
+            System.out.print(" 1");
+        }
+
+        int prev2 = 0;
+        int prev1 = 1;
+        int current = 0;
+
+        for (int i = 3; i <= n; i++) {
+            current = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
+            System.out.print(" " + current);
+        }
+    }
+
+    // time - O(n); space - O(1)
+    static public void fibonacci3(int n) {
+        int prev2 = 0;
+        int prev1 = 1;
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(prev2 + " ");
+            int current = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
+        }
+    }
+
     public static void main(String[] args) {
-        printNtimes("Hello", 5);
-        print1toN(5);
+        // printNtimes("Hello", 5);
+        // print1toN(5);
         int a = sumOfN(6);
         System.out.println(a);
         factorialOfN(5);
@@ -99,8 +157,12 @@ public class basic_recursion {
         int[] arr2 = { 1, 2, 3, 4, 5 };
         revArr2(0, arr2, arr2.length);
 
-        revArr3(arr);
-        for (int i = 0; i < arr2.length; i++)
-            System.out.println(arr2[i]);
+        // revArr3(arr);
+        // for (int i = 0; i < arr2.length; i++)
+        // System.out.println(arr2[i]);
+
+        fibonacci(8);
+        fibonacci2(8);
+        fibonacci3(8);
     }
 }
