@@ -151,6 +151,64 @@ public class basic_maths {
         return divisors == 2;
     }
 
+    // Fibonacci series with diffrent approaches
+    // time - O(n) + O(n); space - O(n)
+    static public void fibonacci(int n) {
+        if (n == 0) {
+            System.out.println(0);
+            return;
+        }
+        if (n == 1) {
+            System.out.println("0 1");
+            return;
+        }
+
+        int[] fib = new int[n + 1];
+        fib[0] = 0;
+        fib[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.println(fib[i]);
+        }
+    }
+
+    // time - O(n); space - O(1)
+    static public void fibonacci2(int n) {
+        if (n >= 1) {
+            System.out.print(" 0");
+        }
+        if (n >= 2) {
+            System.out.print(" 1");
+        }
+
+        int prev2 = 0;
+        int prev1 = 1;
+        int current = 0;
+
+        for (int i = 3; i <= n; i++) {
+            current = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
+            System.out.print(" " + current);
+        }
+    }
+
+    // time - O(n); space - O(1)
+    static public void fibonacci3(int n) {
+        int prev2 = 0;
+        int prev1 = 1;
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(prev2 + " ");
+            int current = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
+        }
+    }
+
     public static void main(String[] args) {
         // extractDigits(5431);
         // countDigits(4565);
@@ -161,5 +219,8 @@ public class basic_maths {
         findGcdEuclidean(100, 400);
         isArmstrong(123);
         isPrime(13);
+        fibonacci(8);
+        fibonacci2(8);
+        fibonacci3(8);
     }
 }

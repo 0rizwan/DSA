@@ -86,62 +86,13 @@ public class basic_recursion {
         return true;
     }
 
-    // Fibonacci series with diffrent approaches
-    // time - O(n) + O(n); space - O(n)
-    static public void fibonacci(int n) {
-        if (n == 0) {
-            System.out.println(0);
-            return;
-        }
-        if (n == 1) {
-            System.out.println("0 1");
-            return;
-        }
-
-        int[] fib = new int[n + 1];
-        fib[0] = 0;
-        fib[1] = 1;
-
-        for (int i = 2; i <= n; i++) {
-            fib[i] = fib[i - 1] + fib[i - 2];
-        }
-        for (int i = 0; i < n; i++) {
-            System.out.println(fib[i]);
-        }
-    }
-
-    // time - O(n); space - O(1)
-    static public void fibonacci2(int n) {
-        if (n >= 1) {
-            System.out.print(" 0");
-        }
-        if (n >= 2) {
-            System.out.print(" 1");
-        }
-
-        int prev2 = 0;
-        int prev1 = 1;
-        int current = 0;
-
-        for (int i = 3; i <= n; i++) {
-            current = prev1 + prev2;
-            prev2 = prev1;
-            prev1 = current;
-            System.out.print(" " + current);
-        }
-    }
-
-    // time - O(n); space - O(1)
-    static public void fibonacci3(int n) {
-        int prev2 = 0;
-        int prev1 = 1;
-
-        for (int i = 0; i < n; i++) {
-            System.out.print(prev2 + " ");
-            int current = prev1 + prev2;
-            prev2 = prev1;
-            prev1 = current;
-        }
+    // fibonacci series using recursion
+    static public int fib(int n) {
+        if (n <= 1)
+            return n;
+        int prev1 = fib(n - 1);
+        int prev2 = fib(n - 2);
+        return prev1 + prev2;
     }
 
     public static void main(String[] args) {
@@ -160,9 +111,7 @@ public class basic_recursion {
         // revArr3(arr);
         // for (int i = 0; i < arr2.length; i++)
         // System.out.println(arr2[i]);
-
-        fibonacci(8);
-        fibonacci2(8);
-        fibonacci3(8);
+        fib(5);
+        
     }
 }
