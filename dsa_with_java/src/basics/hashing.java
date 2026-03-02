@@ -19,10 +19,10 @@ public class hashing {
         System.out.println(hash[q]);
     }
 
-    static public void frequencyInArrays(int[] arr, int b) {
+    static public void frequencyInArrays(int[] arr, int n) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < n; i++) {
             if (map.containsKey(arr[i])) {
                 map.put(arr[i], map.get(arr[i]) + 1);
             } else {
@@ -53,5 +53,6 @@ public class hashing {
         int[] arr = { 1, 3, 2, 1, 1, 2, 4, 3 };
         findFrequency(3, arr);
         strFrequency(',', "hello, this is world.");
+        frequencyInArrays(arr, arr.length);
     }
 }
