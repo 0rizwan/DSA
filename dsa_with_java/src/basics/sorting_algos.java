@@ -1,9 +1,8 @@
 package basics;
 
 public class sorting_algos {
-    // Selection sort is a simple sorting algorithm that repeatedly finds the
-    // smallest element
-    // from the unsorted portion of a list and moves it to the beginning.
+    // Repeatedly find the smallest element from the unsorted part and move it to
+    // the front.
     public static void selectionSort(int[] arr, int n) {
         for (int i = 0; i < n - 1; i++) {
             int min = i;
@@ -21,9 +20,8 @@ public class sorting_algos {
         }
     }
 
-    // Bubble sort is a basic sorting algorithm that repeatedly compares adjacent
-    // elements
-    // and swaps them if they are in the wrong order until the list is sorted.
+    // Repeatedly swap adjacent elements if they are in the wrong order until the
+    // list is sorted.
     public static void bubbleSort(int[] arr, int n) {
         for (int i = n - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
@@ -39,6 +37,8 @@ public class sorting_algos {
         }
     }
 
+    // Move through the array and keep swapping the current element left until it
+    // reaches its correct place in the already sorted part
     public static void insertionSort(int[] arr, int n) {
         for (int i = 0; i < n; i++) {
             int j = i;
