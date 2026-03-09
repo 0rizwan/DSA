@@ -1,0 +1,139 @@
+Here are the 6 most important DSA coding patterns that cover around 80% of typical interview problems. If you master these, you’ll solve most LeetCode / GFG problems faster. 🚀
+
+1️⃣ Two Pointers
+Pattern: Use two indices moving from opposite ends or start/end to scan the array efficiently.
+
+Common problems:
+
+Sorted array pair sums
+Two sum variants
+Container with most water
+
+Example: Find two numbers that sum to a target in a sorted array
+
+int left = 0, right = arr.length - 1;
+while (left < right) {
+    int sum = arr[left] + arr[right];
+    if (sum == target) {
+        System.out.println(left + ", " + right);
+        break;
+    } else if (sum < target) {
+        left++;
+    } else {
+        right--;
+    }
+}
+
+2️⃣ Sliding Window
+Pattern: Maintain a “window” (subarray) of elements, move it to compute sums, max, min, etc.
+
+Common problems:
+Maximum sum subarray of size k
+Longest substring without repeating characters
+Minimum window substring
+
+Example: Maximum sum of subarray of size k
+
+int maxSum = 0, windowSum = 0;
+for (int i = 0; i < arr.length; i++) {
+    windowSum += arr[i];
+    if (i >= k - 1) {
+        maxSum = Math.max(maxSum, windowSum);
+        windowSum -= arr[i - k + 1];
+    }
+}
+
+3️⃣ Fast & Slow Pointers (Floyd’s Tortoise & Hare)
+Pattern: Two pointers moving at different speeds to detect cycles or find mid-points.
+
+Common problems:
+Linked list cycle detection
+Find middle of linked list
+Happy numbers
+
+Example: Detect cycle in linked list
+
+ListNode slow = head, fast = head;
+while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow == fast) {
+        System.out.println("Cycle detected");
+        break;
+    }
+}
+
+4️⃣ Binary Search / Divide & Conquer
+Pattern: Divide search space into halves to find a target, min/max, or solve problems recursively.
+
+Common problems:
+Search in sorted array
+Find first/last occurrence
+Search in rotated sorted array
+
+Example: Standard binary search
+
+int low = 0, high = arr.length - 1;
+while (low <= high) {
+    int mid = low + (high - low) / 2;
+    if (arr[mid] == target) {
+        System.out.println(mid);
+        break;
+    } else if (arr[mid] < target) {
+        low = mid + 1;
+    } else {
+        high = mid - 1;
+    }
+}
+
+5️⃣ Merge / Sort & Conquer
+Pattern: Split array recursively, solve subproblems, and merge results.
+
+Common problems:
+Merge Sort / Count inversions
+K-way merge problems
+Median of two sorted arrays
+
+Example: Merge two sorted arrays (part of Merge Sort)
+
+int[] temp = new int[right - left + 1];
+int i = left, j = mid + 1, k = 0;
+while (i <= mid && j <= right) {
+    temp[k++] = arr[i] <= arr[j] ? arr[i++] : arr[j++];
+}
+while (i <= mid) temp[k++] = arr[i++];
+while (j <= right) temp[k++] = arr[j++];
+for (i = left; i <= right; i++) arr[i] = temp[i - left];
+
+6️⃣ Hashing / Frequency Map
+Pattern: Use a HashMap / HashSet to store frequency or presence of elements.
+
+Common problems:
+Two sum (unsorted array)
+Subarray sum problems
+Count duplicates
+
+Example: Two sum using HashMap
+
+Map<Integer, Integer> map = new HashMap<>();
+for (int i = 0; i < arr.length; i++) {
+    int complement = target - arr[i];
+    if (map.containsKey(complement)) {
+        System.out.println(map.get(complement) + ", " + i);
+        break;
+    }
+    map.put(arr[i], i);
+}
+
+🔑 Quick Summary Table
+Pattern	                Key Idea                        Problems
+Two Pointers	        Scan from both ends	            Pair sums, Container problems
+Sliding Window	        Maintain a moving window	    Max/min subarray, substring problems
+Fast & Slow	            Pointers with different speeds	Cycles, middle node
+Binary Search	        Divide search space	            Sorted arrays, target search
+Merge/Sort & Conquer	Split and merge	                Merge sort, inversions
+Hashing	                Store presence/frequency	    Two sum, subarrays
+
+💡 Memory Trick:
+Think: “Pointers, Window, Fast-Slow, Binary, Merge, Hash” → PWFBMH
+(PW = two pointers/sliding window, F = fast-slow, B = binary search, M = merge, H = hashing)
