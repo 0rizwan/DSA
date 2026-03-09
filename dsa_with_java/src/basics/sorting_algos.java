@@ -1,6 +1,7 @@
 package basics;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class sorting_algos {
     // Repeatedly find the smallest element from the unsorted part and move it to
@@ -56,13 +57,18 @@ public class sorting_algos {
         }
     }
 
+    // Divide the array into halves recursively until single elements, then merge
+    // them back in sorted order.
     public static void mergeSort(int[] arr, int low, int high) {
         if (low >= high)
             return;
         int mid = (low + high) / 2;
         mergeSort(arr, low, mid);
         mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
 
+    public static void merge(int[] arr, int low, int mid, int high) {
         int left = low;
         int right = mid + 1;
         ArrayList<Integer> temp = new ArrayList<>();
@@ -89,7 +95,6 @@ public class sorting_algos {
         for (int i = low; i <= high; i++) {
             arr[i] = temp.get(i - low);
         }
-        System.out.println(temp);
     }
 
     public static void main(String[] args) {
@@ -98,7 +103,10 @@ public class sorting_algos {
         bubbleSort(arr, arr.length);
         insertionSort(arr, arr.length);
 
-        int[] arr2 = {5,7,1,2,9,1,15};
+        int[] arr2 = { 5, 7, 1, 2, 9, 1, 15 };
+        System.out.println("Before merge sort " + Arrays.toString(arr2));
+
         mergeSort(arr2, 0, arr2.length - 1);
+        System.out.println("After merge sort " + Arrays.toString(arr2));
     }
 }
