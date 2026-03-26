@@ -74,17 +74,6 @@ public class easy {
         return true;
     }
 
-    // Given an integer array nums, rotate the array to the left by one.
-    // Note: There is no need to return anything, just modify the given array.
-    public static void leftRotate(int[] arr, int n) {
-        for (int i = 0; i < n - 1; i++) {
-            int temp = arr[i];
-            arr[i] = arr[i + 1];
-            arr[i + 1] = temp;
-        }
-        System.out.println(Arrays.toString(arr));
-    }
-
     // Given an integer array sorted in non-decreasing order, remove the duplicates
     // in place such that each unique element appears only once. The relative order
     // of the elements should be kept the same.
@@ -94,8 +83,8 @@ public class easy {
     // you leave beyond the first k elements.
     public static int removeDuplicate(int[] arr) {
         int i = 0;
-        for(int j = 1; j < arr.length; j++){
-            if(arr[i] != arr[j]){
+        for (int j = 1; j < arr.length; j++) {
+            if (arr[i] != arr[j]) {
                 arr[i + 1] = arr[j];
                 i++;
             }
@@ -103,6 +92,57 @@ public class easy {
         return i + 1;
     }
 
+    // Given an array of integers, rotating array of elements by k elements either
+    // left or right.
+    // Note: There is no need to return anything, just modify the given array.
+    public static void leftRotateByOne(int[] arr, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            int temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void rotateLeft(int[] arr, int n, int k) {
+        if (n == 0)
+            return;
+        k = k % n;
+        int[] temp = Arrays.copyOfRange(arr, 0, k);
+
+        for (int i = k; i < n; i++) {
+            arr[i - k] = arr[i];
+        }
+
+        for (int i = 0; i < k; i++) {
+            arr[n - k + i] = temp[i];
+        }
+    }
+
+    public static void rotateRight(int[] arr, int n, int k) {
+        if (n == 0)
+            return;
+        k = k % n;
+
+        int[] temp = Arrays.copyOfRange(arr, n - k, n);
+        for (int i = n - 1; i >= k; i--) {
+            arr[i] = arr[i - k];
+        }
+
+        for (int i = 0; i < k; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
+    // Given an array, and an element num the task is to find if num is present in the given array or not. If present print the index of the element or print -1.
+    public static int linearSearch(int[] arr, int n, int num) {
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == num) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     public static void main(String[] args) {
         int[] arr1 = { 2, 5, 1, 3, 0 };
@@ -114,5 +154,12 @@ public class easy {
         System.out.println("The second smallest element in the array is: " + secondSmallest);
         System.out.println("The second largest element in the array is: " + secondLargest);
 
+        boolean x = isSorted(arr1, arr1.length);
+        System.out.println(x);
+
+        int[] arr2 = { 1, 2, 3, 4, 5, 6, 7 };
+        System.out.println("Array before: " + Arrays.toString(arr2));
+        rotateRight(arr2, arr2.length, 2);
+        System.out.println("Array after : " + Arrays.toString(arr2));
     }
 }
