@@ -134,7 +134,36 @@ public class easy {
         }
     }
 
-    // Given an array, and an element num the task is to find if num is present in the given array or not. If present print the index of the element or print -1.
+    public static void reverseArray(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    // Optimal approach to rotate an array by k places.
+    public static void rotateArrByK(int[] arr, int n, int k, String direction) {
+        if (n == 0 || k == 0)
+            return;
+        k = k % n;
+
+        if (direction.equals("left")) {
+            reverseArray(arr, 0, k - 1);
+            reverseArray(arr, k, n - 1);
+            reverseArray(arr, 0, n - 1);
+        } else if (direction.equals("right")) {
+            reverseArray(arr, n - k, n - 1);
+            reverseArray(arr, 0, n - k - 1);
+            reverseArray(arr, 0, n - 1);
+        }
+    }
+
+    // Given an array, and an element num the task is to find if num is present in
+    // the given array or not. If present print the index of the element or print
+    // -1.
     public static int linearSearch(int[] arr, int n, int num) {
         for (int i = 0; i < n; i++) {
             if (arr[i] == num) {
@@ -161,5 +190,12 @@ public class easy {
         System.out.println("Array before: " + Arrays.toString(arr2));
         rotateRight(arr2, arr2.length, 2);
         System.out.println("Array after : " + Arrays.toString(arr2));
+
+        int[] arr3 = {1,2,3,4,5,6,7};
+        rotateArrByK(arr3, arr3.length, 2, "right");
+        System.out.println(Arrays.toString(arr2));
+
+        int a = linearSearch(arr1, arr1.length, 9);
+        System.out.println(a);
     }
 }
