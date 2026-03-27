@@ -173,6 +173,61 @@ public class easy {
         return -1;
     }
 
+    // You are given an array of integers, your task is to move all the zeros in the
+    // array to the end of the array and move non-negative integers to the front by
+    // maintaining their order.
+    // Brute force approach - TC: O(n), SC: O(n)
+    public static void moveZeroes(int[] arr, int n) {
+        if (n == 0)
+            return;
+        int[] temp = new int[n];
+
+        int index = 0;
+
+        // Step 1: copy non-zero elements
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                temp[index] = arr[i];
+                index++;
+            }
+        }
+
+        // Step 2: fill remaining with zeros
+        for (int i = index; i < n; i++) {
+            temp[i] = 0;
+        }
+
+        // Step 3: copy back to original array
+        for (int i = 0; i < n; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
+    // Optimal approach - TC: O(n), SC: O(1)
+    public static void moveZeroes2(int[] arr, int n) {
+        int j = -1;
+
+        // Find the first zero
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                j = i;
+                break;
+            }
+        }
+        // If no zero found, return
+        if (j == -1)
+            return;
+
+        for (int i = j + 1; i < n; i++) {
+            if (arr[i] != 0) {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                j++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr1 = { 2, 5, 1, 3, 0 };
         int max = findLargestElement(arr1, arr1.length);
@@ -191,11 +246,15 @@ public class easy {
         rotateRight(arr2, arr2.length, 2);
         System.out.println("Array after : " + Arrays.toString(arr2));
 
-        int[] arr3 = {1,2,3,4,5,6,7};
+        int[] arr3 = { 1, 2, 3, 4, 5, 6, 7 };
         rotateArrByK(arr3, arr3.length, 2, "right");
         System.out.println(Arrays.toString(arr2));
 
         int a = linearSearch(arr1, arr1.length, 9);
         System.out.println(a);
+
+        int[] arr4 = { 1, 2, 0, 4, 0, 6, 7 };
+        moveZeroes(arr4, arr4.length);
+        System.out.println(Arrays.toString(arr4));
     }
 }
