@@ -1,6 +1,12 @@
 package arrays;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class easy {
     // Given an array, we have to find the largest element in the array.
@@ -228,6 +234,44 @@ public class easy {
         }
     }
 
+    // Given two sorted arrays, arr1, and arr2 of size n and m. Find the union of
+    // two sorted arrays.
+    // The union of two arrays can be defined as the common and distinct elements in
+    // the two arrays.
+    // Using Set - 
+    public static int[] findUnion(int[] arr1, int[] arr2, int m, int n) {
+        Set<Integer> set = new TreeSet<>();
+        for (int i = 0; i < m; i++) {
+            set.add(arr1[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            set.add(arr2[i]);
+        }
+        int[] unionArr = new int[set.size()];
+        int index = 0;
+        for (int item : set) {
+            unionArr[index] = item;
+            index++;
+        }
+        return unionArr;
+    }
+
+    // Using Map - 
+    public static List<Integer> findUnion2(int[] arr1, int[] arr2, int m, int n) {
+        Map<Integer, Integer> freq = new TreeMap<>();
+        for (int i = 0; i < m; i++) {
+            freq.put(arr1[i], freq.getOrDefault(arr1[i], 0) + 1);
+        }
+        for (int i = 0; i < n; i++) {
+            freq.put(arr2[i], freq.getOrDefault(arr2[i], 0) + 1);
+        }
+        List<Integer> unionList = new ArrayList<>();
+        for (int key : freq.keySet()) {
+            unionList.add(key);
+        }
+        return unionList;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = { 2, 5, 1, 3, 0 };
         int max = findLargestElement(arr1, arr1.length);
@@ -256,5 +300,11 @@ public class easy {
         int[] arr4 = { 1, 2, 0, 4, 0, 6, 7 };
         moveZeroes(arr4, arr4.length);
         System.out.println(Arrays.toString(arr4));
+
+        int[] arr5 = { 10, 3, 4, 2, 5, 6, 7, 8, 9, 1, 1 };
+        int[] arr6 = { 4, 3, 11, 2, 5, 11, 12 };
+        int[] unionList = findUnion(arr5, arr6, arr5.length, arr6.length);
+        findUnion2(arr5, arr6, arr5.length, arr6.length);
+        System.out.println("Union of two arrays " + Arrays.toString(unionList));
     }
 }
