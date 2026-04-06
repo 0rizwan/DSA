@@ -238,7 +238,8 @@ public class easy {
     // two sorted arrays.
     // The union of two arrays can be defined as the common and distinct elements in
     // the two arrays.
-    // Using Set - 
+    // Using Set -
+    // TC - O((m+n)log(m+n)) SC - O(m + n)
     public static int[] findUnion(int[] arr1, int[] arr2, int m, int n) {
         Set<Integer> set = new TreeSet<>();
         for (int i = 0; i < m; i++) {
@@ -256,7 +257,7 @@ public class easy {
         return unionArr;
     }
 
-    // Using Map - 
+    // Using Map -
     public static List<Integer> findUnion2(int[] arr1, int[] arr2, int m, int n) {
         Map<Integer, Integer> freq = new TreeMap<>();
         for (int i = 0; i < m; i++) {
@@ -270,6 +271,87 @@ public class easy {
             unionList.add(key);
         }
         return unionList;
+    }
+
+    // Optimal solution using two pointers -
+    // TC - O(m + n) SC - O(m + n)
+    public static List<Integer> findUnion3(int[] arr1, int[] arr2, int m, int n) {
+        ArrayList<Integer> unionArr = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < m && j < n) {
+            if (arr1[i] < arr2[j]) {
+                if (unionArr.isEmpty() || unionArr.get(unionArr.size() - 1) != arr1[i]) {
+                    unionArr.add(arr1[i]);
+                }
+                i++;
+            } else if (arr2[j] < arr1[i]) {
+                if (unionArr.isEmpty() || unionArr.get(unionArr.size() - 1) != arr2[j]) {
+                    unionArr.add(arr2[j]);
+                }
+                j++;
+            } else {
+                if (unionArr.isEmpty() || unionArr.get(unionArr.size() - 1) != arr1[i]) {
+                    unionArr.add(arr1[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+
+        while (i < m) {
+            if (unionArr.isEmpty() || unionArr.get(unionArr.size() - 1) != arr1[i]) {
+                unionArr.add(arr1[i]);
+            }
+            i++;
+        }
+        while (j < n) {
+            if (unionArr.isEmpty() || unionArr.get(unionArr.size() - 1) != arr2[j]) {
+                unionArr.add(arr2[j]);
+            }
+            j++;
+        }
+        return unionArr;
+    }
+
+    // Intersection of two sorted arrays
+    // Brute force approach -
+    public static List<Integer> findIntersection(int[] arr1, int[] arr2, int m, int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int[] visitedArr = new int[n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr1[i] == arr2[j] && visitedArr[j] == 0) {
+                    ans.add(arr1[i]);
+                    visitedArr[j] = 1;
+                    break;
+                }
+                if (arr2[j] > arr1[i])
+                    break;
+            }
+        }
+        return ans;
+    }
+
+    // Optimal approach using two pointers - 
+    // TC - O(m + n) SP - O(k)
+    public static List<Integer> findIntersection2(int[] arr1, int[] arr2, int m, int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int i = 0, j = 0;
+        while (i < m && j < n) {
+            System.out.println(i + " " + j);
+            if (arr1[i] < arr2[j]) {
+                i++;
+            } else if (arr2[j] < arr1[i]) {
+                j++;
+            } else {
+                ans.add(arr1[i]);
+                i++;
+                j++;
+            }
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -301,10 +383,19 @@ public class easy {
         moveZeroes(arr4, arr4.length);
         System.out.println(Arrays.toString(arr4));
 
-        int[] arr5 = { 10, 3, 4, 2, 5, 6, 7, 8, 9, 1, 1 };
-        int[] arr6 = { 4, 3, 11, 2, 5, 11, 12 };
+        int[] arr5 = { 1, 1, 2, 3, 4 };
+        int[] arr6 = { 2, 3, 4, 5, 6, 6 };
         int[] unionList = findUnion(arr5, arr6, arr5.length, arr6.length);
         findUnion2(arr5, arr6, arr5.length, arr6.length);
         System.out.println("Union of two arrays " + Arrays.toString(unionList));
+
+        List<Integer> unionArr = findUnion3(arr5, arr6, arr5.length, arr6.length);
+        System.out.println(unionArr);
+
+        List<Integer> intersectionArr = findIntersection(arr5, arr6, arr5.length, arr6.length);
+        System.out.println(intersectionArr);
+
+        List<Integer> intersectionArr2 = findIntersection2(arr5, arr6, arr5.length, arr6.length);
+        System.out.println(intersectionArr2);
     }
 }
