@@ -334,7 +334,7 @@ public class easy {
         return ans;
     }
 
-    // Optimal approach using two pointers - 
+    // Optimal approach using two pointers -
     // TC - O(m + n) SP - O(k)
     public static List<Integer> findIntersection2(int[] arr1, int[] arr2, int m, int n) {
         ArrayList<Integer> ans = new ArrayList<>();
@@ -354,6 +354,66 @@ public class easy {
         return ans;
     }
 
+    // Find the Missing Number from an array of distinct integers
+    // TC - O(n) SC - O(1)
+    public static int findMissingNumber(int[] arr) {
+        int actualSum = 0;
+        int expectedSum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            actualSum += arr[i];
+        }
+        for (int i = 1; i <= arr.length + 1; i++) {
+            expectedSum += i;
+        }
+        return expectedSum - actualSum;
+    }
+
+    // Given an array that contains only 1 and 0 return the count of maximum
+    // consecutive ones in the array..
+    public static int findMaxConsecutiveOnes(int[] arr, int n) {
+        int freq = 0;
+        int maxFreq = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 1) {
+                freq++;
+                if (freq > maxFreq) {
+                    maxFreq = freq;
+                }
+            } else {
+                freq = 0;
+            }
+        }
+        return maxFreq;
+    }
+
+    // Given a non-empty array of integers arr, every element appears twice except
+    // for one. Find that single one.
+    // Brute force approach using nested loops - TC - O(n*n) SC - O(1)
+    public static int getSingleElement(int[] arr, int n) {
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (arr[i] == arr[j]) {
+                    count++;
+                    if (count == 2)
+                        break;
+                }
+            }
+            if (count == 1)
+                return arr[i];
+        }
+        return -1;
+    }
+
+    // Optimal approach using XOR - TC - O(n) SC - O(1) 
+    public static int getSingleElement2(int[] arr, int n) {
+        int xorr = 0;
+        for (int i = 0; i < n; i++) {
+            xorr = xorr ^ arr[i];
+        }
+        return xorr;
+    }
+
     public static void main(String[] args) {
         int[] arr1 = { 2, 5, 1, 3, 0 };
         int max = findLargestElement(arr1, arr1.length);
@@ -365,7 +425,7 @@ public class easy {
         System.out.println("The second largest element in the array is: " + secondLargest);
 
         boolean x = isSorted(arr1, arr1.length);
-        System.out.println(x);
+        System.out.println("Is array sorted - " + x);
 
         int[] arr2 = { 1, 2, 3, 4, 5, 6, 7 };
         System.out.println("Array before: " + Arrays.toString(arr2));
@@ -377,11 +437,11 @@ public class easy {
         System.out.println(Arrays.toString(arr2));
 
         int a = linearSearch(arr1, arr1.length, 9);
-        System.out.println(a);
+        System.out.println("Linear search: " + a);
 
         int[] arr4 = { 1, 2, 0, 4, 0, 6, 7 };
         moveZeroes(arr4, arr4.length);
-        System.out.println(Arrays.toString(arr4));
+        System.out.println("Move zeroes to end - " + Arrays.toString(arr4));
 
         int[] arr5 = { 1, 1, 2, 3, 4 };
         int[] arr6 = { 2, 3, 4, 5, 6, 6 };
@@ -397,5 +457,17 @@ public class easy {
 
         List<Integer> intersectionArr2 = findIntersection2(arr5, arr6, arr5.length, arr6.length);
         System.out.println(intersectionArr2);
+
+        int[] arr7 = { 1, 3, 4 };
+        int missingNum = findMissingNumber(arr7);
+        System.out.println("Missing number is: " + missingNum);
+
+        int[] arr8 = { 1, 0, 1, 1, 0, 1 };
+        int consecutiveNum = findMaxConsecutiveOnes(arr8, arr8.length);
+        System.out.println("Most consecutive num is: " + consecutiveNum);
+
+        int[] arr9 = { 4, 1, 2, 1, 2 };
+        int singleElem = getSingleElement2(arr9, arr9.length);
+        System.out.println("The single element is: " + singleElem);
     }
 }
