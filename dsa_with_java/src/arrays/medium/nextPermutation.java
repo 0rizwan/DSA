@@ -96,7 +96,47 @@ public class nextPermutation {
         }
     }
 
-    
+    // Optimal approach
+    // TC - O(n) SC - O(1)
+    public static void nextPermutation2(int[] arr, int n) {
+        int pivot = -1;
+        // Step 1: Find the first decreasing element from the right
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] < arr[i + 1]) {
+                pivot = i;
+                break;
+            }
+        }
+
+        // Reverse the entire array if it keeps increasing while going from right to
+        // left eg. {3,2,1,0}
+        if (pivot == -1) {
+            reverseArr(arr, 0, n - 1);
+            return;
+        }
+
+        // Step 2: Find just greater element than pivot (from right side) and swap with
+        // pivot
+        for (int i = n - 1; i > pivot; i--) {
+            if (arr[i] > arr[pivot]) {
+                int temp = arr[i];
+                arr[i] = arr[pivot];
+                arr[pivot] = temp;
+                break;
+            }
+        }
+
+        // Step 3: Reverse the right part (after pivot index)
+        reverseArr(arr, pivot + 1, n - 1);
+    }
+
+    public static void reverseArr(int[] arr, int start, int end) {
+        while (start < end) {
+            swap(arr, start, end);
+            start++;
+            end--;
+        }
+    }
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3 };
@@ -104,5 +144,9 @@ public class nextPermutation {
 
         List<Integer> result = nextPermutation1(arr);
         System.out.println("Next permutation is: " + result);
+
+        int[] arr2 = { 3, 2, 1, 0 };
+        nextPermutation2(arr2, arr2.length);
+        System.out.println("Next permutation is: " + Arrays.toString(arr2));
     }
 }
