@@ -47,7 +47,7 @@ public class rearrangeBySign {
         return ans;
     }
 
-    // If the number of positives and negatives number are not equal this is the
+    // If positives and negatives number are not equal this is the
     // only solution for that.
     // TC - O(n + n = n), SC = O(n)
     public static int[] rearrangeBySign3(int[] arr, int n) {
