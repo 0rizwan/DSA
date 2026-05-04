@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 // Given an array nums of size n and an integer k, find the length of the
 // longest sub-array that sums to k. If no such sub-array exists, return 0.
-public class longestSubarray {
+public class longestSubarrayWithK {
 
     // Brute force approach using nested loops - TC - O(n*n) SP - O(1)
-    public static int longestSubarrayWithK(int[] arr, int n, int k) {
+    public static int longestSubarrayWithK1(int[] arr, int n, int k) {
         int maxLen = 0;
         for (int i = 0; i < n; i++) {
             int sum = 0;
@@ -75,7 +75,7 @@ public class longestSubarray {
 
     public static void main(String[] args) {
         int[] arr = { 1, -1, 5, -2, 3 };
-        System.out.println("Longest subarray length is " + longestSubarrayWithK(arr, arr.length, 3));
+        System.out.println("Longest subarray length is " + longestSubarrayWithK1(arr, arr.length, 3));
 
         int[] arr2 = { 1, 2, 3, 1, 1, 1, 1 };
         System.out.println("Longest subarray length is " + longestSubarrayWithK2(arr2, arr2.length, 6));

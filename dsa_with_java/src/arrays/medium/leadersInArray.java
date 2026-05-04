@@ -5,7 +5,7 @@ import java.util.ArrayList;
 // Leaders in an Array - 
 // Given an array of integers, find all the leaders in the array.
 // An element is considered a leader if it is strictly greater than all the elements to its right.
-// 👉 The rightmost element is always a leader since there are no elements to its right.
+// The rightmost element is always a leader since there are no elements to its right.
 
 public class leadersInArray {
     // Brute force approach using two nested loops -
@@ -35,7 +35,7 @@ public class leadersInArray {
         int max = arr[n - 1];
         leaders.add(max);
 
-        for (int i = n - 1; i >= 0; i--) {
+        for (int i = n - 2; i >= 0; i--) {
             if (arr[i] > max) {
                 leaders.add(arr[i]);
                 max = arr[i];
